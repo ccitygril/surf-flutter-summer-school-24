@@ -1,36 +1,18 @@
-import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_summer_school_24/ui/pages/carusel_page/carusel_page_wm.dart';
-
-class CarouselPageScreen extends ElementaryWidget<CarouselPageWM> {
-  const CarouselPageScreen({
-    Key? key,
-    WidgetModelFactory wmFactory = createCarouselPageWM,
-  }) : super(wmFactory, key: key);
-
-  @override
-  Widget build(CarouselPageWM wm) {
-    return PageCarousel();
-  }
-}
+import 'package:surf_flutter_summer_school_24/%20features/image/entity/resoursces_list.dart';
 
 class PageCarousel extends StatefulWidget {
   const PageCarousel({
     super.key,
+    required this.resourscesList,
   });
 
+  final ResourscesList resourscesList;
   @override
   State<PageCarousel> createState() => _PageCarouselState();
 }
 
 class _PageCarouselState extends State<PageCarousel> {
-  final _colors = <Color>[
-    Colors.red,
-    Colors.green,
-    Colors.blue,
-    Colors.orange,
-  ];
-
   final _controller = PageController();
 
   @override
@@ -40,7 +22,7 @@ class _PageCarouselState extends State<PageCarousel> {
         builder: (context, constrains) {
           return ListView.separated(
             // physics: const PageScrollPhysics(),
-            itemCount: _colors.length,
+            itemCount: widget.resourscesList.items.length,
             controller: _controller,
             scrollDirection: Axis.horizontal,
             cacheExtent: 500,
@@ -80,8 +62,16 @@ class _PageCarouselState extends State<PageCarousel> {
                     return Transform(
                       transform: transform,
                       alignment: Alignment.center,
-                      child: ColoredBox(
-                        color: _colors[index % _colors.length],
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                widget.resourscesList.items[index].url),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     );
                   },

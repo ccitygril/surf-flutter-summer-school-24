@@ -7,6 +7,6 @@ class ImageEntity with _$ImageEntity {
   const factory ImageEntity({
     required String id,
     required String url,
-    DateTime? createdAt,
+    String? createdAt,
   }) = _ImageEntity;
 }

@@ -5,9 +5,9 @@ import 'package:surf_flutter_summer_school_24/%20features/image/data/repositiry/
 import 'package:surf_flutter_summer_school_24/%20features/theme%20/di/theme_inherited.dart';
 import 'package:surf_flutter_summer_school_24/%20features/theme%20/domain/theme_controller.dart';
 import 'package:surf_flutter_summer_school_24/%20features/theme%20/repository/theme_repository.dart';
+import 'package:surf_flutter_summer_school_24/%20features/theme%20/storage/theme_storage/theme_storage.dart';
 import 'package:surf_flutter_summer_school_24/%20features/theme%20/theme_data.dart';
 import 'package:surf_flutter_summer_school_24/%20features/theme%20/ui/theme_builder.dart';
-import 'package:surf_flutter_summer_school_24/storage/theme_storage/theme_storage.dart';
 import 'package:surf_flutter_summer_school_24/ui/pages/image_grid_page/image_grid_page.dart';
 
 void main() async {

@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ImageEntity {
   String get id => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ImageEntityCopyWith<ImageEntity> get copyWith =>
@@ -31,7 +31,7 @@ abstract class $ImageEntityCopyWith<$Res> {
           ImageEntity value, $Res Function(ImageEntity) then) =
       _$ImageEntityCopyWithImpl<$Res, ImageEntity>;
   @useResult
-  $Res call({String id, String url, DateTime? createdAt});
+  $Res call({String id, String url, String? createdAt});
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$ImageEntityCopyWithImpl<$Res, $Val extends ImageEntity>
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
     ) as $Val);
   }
 }
@@ -76,7 +76,7 @@ abstract class _$$ImageEntityImplCopyWith<$Res>
       __$$ImageEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String url, DateTime? createdAt});
+  $Res call({String id, String url, String? createdAt});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class __$$ImageEntityImplCopyWithImpl<$Res>
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
     ));
   }
 }
@@ -122,7 +122,7 @@ class _$ImageEntityImpl implements _ImageEntity {
   @override
   final String url;
   @override
-  final DateTime? createdAt;
+  final String? createdAt;
 
   @override
   String toString() {
@@ -154,14 +154,14 @@ abstract class _ImageEntity implements ImageEntity {
   const factory _ImageEntity(
       {required final String id,
       required final String url,
-      final DateTime? createdAt}) = _$ImageEntityImpl;
+      final String? createdAt}) = _$ImageEntityImpl;
 
   @override
   String get id;
   @override
   String get url;
   @override
-  DateTime? get createdAt;
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$ImageEntityImplCopyWith<_$ImageEntityImpl> get copyWith =>

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:surf_flutter_summer_school_24/%20features/theme%20/di/theme_inherited.dart';
-import 'package:surf_flutter_summer_school_24/ui/pages/choice_page/choice_page.dart';
+import 'package:surf_flutter_summer_school_24/ui/pages/image_upload_page/image_upload_page.dart';
 import 'package:surf_flutter_summer_school_24/ui/ui_kit/typography/typograhy.dart';
 
 class CustomBottomSheet extends StatelessWidget {
@@ -31,7 +31,7 @@ class CustomBottomSheet extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ChoicePage(),
+                      builder: (context) => const ImageUploadPageWidget(),
                     ),
                   );
                 },

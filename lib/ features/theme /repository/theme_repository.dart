@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_summer_school_24/storage/theme_storage/theme_storage.dart';
+import 'package:surf_flutter_summer_school_24/%20features/theme%20/storage/theme_storage/theme_storage.dart';
 
 class ThemeRepository {
   final ThemeStorage _themeStorage;

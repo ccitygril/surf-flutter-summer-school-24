@@ -5,7 +5,7 @@ import 'package:surf_flutter_summer_school_24/ui/ui_kit/widget/custom_bottom_she
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
-    this.preferredSize = const Size.fromHeight(80),
+    this.preferredSize = const Size.fromHeight(56),
   });
 
   @override
@@ -13,11 +13,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: SvgPicture.asset(
-        'assets/logo.svg',
-        color: Colors.black,
-        height: 34,
-        width: 140,
+      title: Center(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 28.0),
+          child: Image.asset(
+            'assets/png/logo.png',
+            width: 140,
+          ),
+        ),
       ),
       actions: [
         GestureDetector(
@@ -30,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             );
           },
           child: SvgPicture.asset(
-            'assets/icon_app_bar.svg',
+            'assets/svg/icon_app_bar.svg',
           ),
         ),
       ],

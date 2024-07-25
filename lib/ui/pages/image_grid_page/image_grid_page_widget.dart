@@ -27,7 +27,7 @@ class ImageGridPageWidget extends ElementaryWidget<IImageGridPageWidgetModel> {
               crossAxisCount: 3,
             ),
             padding: const EdgeInsets.all(8),
-            itemCount: data?.length,
+            itemCount: data?.items.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding:
@@ -35,7 +35,7 @@ class ImageGridPageWidget extends ElementaryWidget<IImageGridPageWidgetModel> {
                 child: GestureDetector(
                   onTap: wm.openCarousel,
                   child: CachedNetworkImage(
-                    imageUrl: wm.images.value.data![index].url,
+                    imageUrl: wm.images.value.data!.items[index].url,
                     fit: BoxFit.cover,
                     placeholder: (context, url) => Shimmer.fromColors(
                       baseColor: Colors.black26,

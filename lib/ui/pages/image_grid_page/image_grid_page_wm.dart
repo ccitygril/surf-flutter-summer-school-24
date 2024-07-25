@@ -2,14 +2,15 @@ import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:surf_flutter_summer_school_24/entity/image_entity.dart';
+import 'package:surf_flutter_summer_school_24/%20features/image/data/repositiry/mock_image_repository.dart';
+import 'package:surf_flutter_summer_school_24/%20features/image/entity/resoursces_list.dart';
 import 'package:surf_flutter_summer_school_24/ui/pages/image_carusel_page/image_carusel_page.dart';
 
 import 'image_grid_page_model.dart';
 import 'image_grid_page_widget.dart';
 
 abstract interface class IImageGridPageWidgetModel implements IWidgetModel {
-  EntityValueListenable<List<ImageEntity>?> get images;
+  EntityValueListenable<ResourscesList?> get images;
   void openCarousel();
 }
 
@@ -29,13 +30,13 @@ ImageGridPageWidgetModel defaultImageGridPageWidgetModelFactory(
 class ImageGridPageWidgetModel
     extends WidgetModel<ImageGridPageWidget, ImageGridPageModel>
     implements IImageGridPageWidgetModel {
-  final EntityStateNotifier<List<ImageEntity>?> _images = EntityStateNotifier();
+  final EntityStateNotifier<ResourscesList?> _images = EntityStateNotifier();
 
   ImageGridPageWidgetModel(super.model);
 
   @override
   // TODO: implement image
-  EntityValueListenable<List<ImageEntity>?> get images => _images;
+  EntityValueListenable<ResourscesList?> get images => _images;
 
   @override
   void initWidgetModel() {
@@ -60,7 +61,12 @@ class ImageGridPageWidgetModel
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const ImageCaruselPageWidget(),
+        builder: (context) => Provider<MockImageRepository>(
+          create: (_) => MockImageRepository(),
+          builder: (context, child) {
+            return const ImageCaruselPageWidget();
+          },
+        ),
       ),
     );
   }
