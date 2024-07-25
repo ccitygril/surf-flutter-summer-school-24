@@ -5,7 +5,7 @@ part 'image_entity.freezed.dart';
 @freezed
 class ImageEntity with _$ImageEntity {
   const factory ImageEntity({
-    required int id,
+    required String id,
     required String url,
     DateTime? createdAt,
   }) = _ImageEntity;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:surf_flutter_summer_school_24/ui/ui_kit/widget/custom_app_bar.dart';
+import 'package:surf_flutter_summer_school_24/ui/ui_kit/widget/custom_button.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({super.key});
@@ -13,8 +14,10 @@ class ErrorPage extends StatelessWidget {
           const Text('Упс!'),
           const Text('Произошла ошибка.'),
           const Text('Попробуйте снова.'),
-          ElevatedButton(
-              onPressed: () {}, child: const Text("ПОПРОБОВАТЬ СНОВА"))
+          CustomButton(
+            onTap: () {},
+            title: "попробуйте снова",
+          ),
         ],
       ),
     );

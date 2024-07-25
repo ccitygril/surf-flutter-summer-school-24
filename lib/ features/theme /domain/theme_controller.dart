@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_summer_school_24/theme%20/repository/theme_repository.dart';
+import 'package:surf_flutter_summer_school_24/%20features/theme%20/repository/theme_repository.dart';
 
 class ThemeController {
   final ThemeRepository _themeRepository;

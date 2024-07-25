@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ImageEntity {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
@@ -31,7 +31,7 @@ abstract class $ImageEntityCopyWith<$Res> {
           ImageEntity value, $Res Function(ImageEntity) then) =
       _$ImageEntityCopyWithImpl<$Res, ImageEntity>;
   @useResult
-  $Res call({int id, String url, DateTime? createdAt});
+  $Res call({String id, String url, DateTime? createdAt});
 }
 
 /// @nodoc
@@ -55,7 +55,7 @@ class _$ImageEntityCopyWithImpl<$Res, $Val extends ImageEntity>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -76,7 +76,7 @@ abstract class _$$ImageEntityImplCopyWith<$Res>
       __$$ImageEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String url, DateTime? createdAt});
+  $Res call({String id, String url, DateTime? createdAt});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class __$$ImageEntityImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -118,7 +118,7 @@ class _$ImageEntityImpl implements _ImageEntity {
       {required this.id, required this.url, this.createdAt});
 
   @override
-  final int id;
+  final String id;
   @override
   final String url;
   @override
@@ -152,12 +152,12 @@ class _$ImageEntityImpl implements _ImageEntity {
 
 abstract class _ImageEntity implements ImageEntity {
   const factory _ImageEntity(
-      {required final int id,
+      {required final String id,
       required final String url,
       final DateTime? createdAt}) = _$ImageEntityImpl;
 
   @override
-  int get id;
+  String get id;
   @override
   String get url;
   @override

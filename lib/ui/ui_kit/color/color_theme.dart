@@ -61,6 +61,8 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
 
   final Color shimmer;
 
+  final Color buttonColor;
+
   AppColorScheme.light()
       : primary = LightColorPalette.white,
         onPrimary = LightColorPalette.white,
@@ -89,7 +91,8 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
         skeletonSecondary = LightColorPalette.cultured,
         skeletonTertiary = LightColorPalette.lightSilver,
         tetradicBackground = LightColorPalette.lightGreen,
-        shimmer = LightColorPalette.platinum;
+        shimmer = LightColorPalette.platinum,
+        buttonColor = LightColorPalette.blue80;
 
   AppColorScheme.dark()
       : primary = DarkColorPalette.black,
@@ -119,7 +122,8 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
         skeletonSecondary = DarkColorPalette.raisinBlack,
         skeletonTertiary = DarkColorPalette.lightSilver,
         tetradicBackground = DarkColorPalette.etonBlue,
-        shimmer = LightColorPalette.platinum;
+        shimmer = LightColorPalette.platinum,
+        buttonColor = DarkColorPalette.blue24;
 
   const AppColorScheme._({
     required this.primary,
@@ -150,6 +154,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
     required this.skeletonTertiary,
     required this.tetradicBackground,
     required this.shimmer,
+    required this.buttonColor,
   });
 
   @override
@@ -214,6 +219,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
       skeletonTertiary: skeletonTertiary ?? this.skeletonTertiary,
       tetradicBackground: tetradicBackground ?? this.tetradicBackground,
       shimmer: shimmer ?? this.shimmer,
+      buttonColor: buttonColor ?? this.buttonColor,
     );
   }
 
@@ -264,6 +270,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
       tetradicBackground:
           Color.lerp(tetradicBackground, other.tetradicBackground, t)!,
       shimmer: Color.lerp(shimmer, other.shimmer, t)!,
+      buttonColor: Color.lerp(buttonColor, other.buttonColor, t)!,
     );
   }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_summer_school_24/theme%20/di/theme_inherited.dart';
+import 'package:surf_flutter_summer_school_24/%20features/theme%20/di/theme_inherited.dart';
 
 typedef ThemeWidgetBuilder = Widget Function(
   BuildContext context,

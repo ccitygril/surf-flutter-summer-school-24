@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_summer_school_24/theme%20/app_color.dart';
-import 'package:surf_flutter_summer_school_24/theme%20/di/theme_inherited.dart';
+import 'package:surf_flutter_summer_school_24/%20features/theme%20/di/theme_inherited.dart';
+import 'package:surf_flutter_summer_school_24/ui/pages/choice_page/choice_page.dart';
 import 'package:surf_flutter_summer_school_24/ui/ui_kit/typography/typograhy.dart';
 
 class CustomBottomSheet extends StatelessWidget {
@@ -17,44 +17,62 @@ class CustomBottomSheet extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              GestureDetector(
+              _SettingItemWidget(
+                icons: Icons.sunny,
+                titel: 'Тема',
                 onTap: () {
                   ThemeInherited.of(context).switchThemeMode();
                 },
-                child: const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.sunny,
-                        color: AppColor.gray88,
-                      ),
-                    ),
-                    Text(
-                      'Тема',
-                      style: AppTypography.normal18,
-                    )
-                  ],
-                ),
               ),
-              const Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.drive_folder_upload_outlined,
-                      color: AppColor.gray88,
+              _SettingItemWidget(
+                icons: Icons.upload_file_outlined,
+                titel: 'Загрузить фотографию',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ChoicePage(),
                     ),
-                  ),
-                  Text(
-                    'Загрузить фото...',
-                    style: AppTypography.normal18,
-                  )
-                ],
+                  );
+                },
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _SettingItemWidget extends StatelessWidget {
+  final IconData? icons;
+  final String titel;
+  final VoidCallback onTap;
+
+  const _SettingItemWidget(
+      {super.key,
+      required this.icons,
+      required this.titel,
+      required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              icons,
+              // color: AppColor.gray88,
+            ),
+          ),
+          Text(
+            titel,
+            style: AppTypography.normal18,
+          )
+        ],
       ),
     );
   }

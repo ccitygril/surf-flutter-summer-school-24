@@ -66,6 +66,11 @@ abstract class AppThemeData {
       selectedItemColor: _darkColorScheme.primary,
       unselectedItemColor: _darkColorScheme.onBackground,
     ),
+    // elevatedButtonTheme: ElevatedButtonThemeData(
+    //   style: ButtonStyle(backgroundColor:
+    //       // backgroundColor: MaterialStateProperty(_darkColorScheme.buttonColor),
+    //       ),
+    // ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: _darkColorScheme.primary,
       contentTextStyle: TextStyle(

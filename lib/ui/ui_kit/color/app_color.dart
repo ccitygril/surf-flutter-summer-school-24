@@ -32,6 +32,8 @@ abstract class LightColorPalette {
   static const appleGreen = Color(0xFF83C000);
 
   static const platinum = Color(0xFFE7E4E0);
+
+  static const blue80 = Color(0xFF80E7FF);
 }
 
 abstract class DarkColorPalette {
@@ -64,4 +66,6 @@ abstract class DarkColorPalette {
   static const black = Colors.black;
 
   static const gray88 = Color(0xFF888888);
+
+  static const blue24 = Color(0xFF247487);
 }
