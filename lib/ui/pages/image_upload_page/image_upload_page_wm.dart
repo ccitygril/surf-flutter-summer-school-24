@@ -19,6 +19,7 @@ ImageUploadPageWidgetModel defaultImageUploadPageWidgetModelFactory(
   return ImageUploadPageWidgetModel(
     ImageUploadPageModel(
       imageRepository: context.read(),
+      imageUseCase: context.read(),
     ),
   );
 }
@@ -37,21 +38,23 @@ class ImageUploadPageWidgetModel
 
   @override
   Future<void> getImageFromCamera() async {
-    File? _image;
+    File? image;
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
-      _image = File(pickedFile.path);
+      image = File(pickedFile.path);
+      model.uploadFile(image);
     }
   }
 
   @override
   Future<void> getImageFromGallery() async {
-    File? _image;
+    File? image;
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      _image = File(pickedFile.path);
+      image = File(pickedFile.path);
+      model.uploadFile(image);
     }
   }
 }

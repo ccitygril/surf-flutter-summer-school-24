@@ -2,7 +2,6 @@ import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:surf_flutter_summer_school_24/%20features/image/data/repositiry/mock_image_repository.dart';
 import 'package:surf_flutter_summer_school_24/%20features/image/entity/resoursces_list.dart';
 import 'package:surf_flutter_summer_school_24/ui/pages/image_carusel_page/image_carusel_page.dart';
 
@@ -61,12 +60,7 @@ class ImageGridPageWidgetModel
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => Provider<MockImageRepository>(
-          create: (_) => MockImageRepository(),
-          builder: (context, child) {
-            return const ImageCaruselPageWidget();
-          },
-        ),
+        builder: (context) => const ImageCaruselPageWidget(),
       ),
     );
   }

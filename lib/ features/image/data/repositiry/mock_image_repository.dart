@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:surf_flutter_summer_school_24/%20features/image/domain/repository/image_repository_interface.dart';
 import 'package:surf_flutter_summer_school_24/%20features/image/entity/image_entity.dart';
 import 'package:surf_flutter_summer_school_24/%20features/image/entity/resoursces_list.dart';
+import 'package:surf_flutter_summer_school_24/%20features/image/entity/resoursces_upload_link.dart';
 
 class MockImageRepository implements IImageRepository {
   @override
@@ -21,5 +24,23 @@ class MockImageRepository implements IImageRepository {
                 'https://img.freepik.com/free-photo/view-of-wild-elk-in-nature_23-2151017808.jpg?w=996&t=st=1721638817~exp=1721639417~hmac=ec22522cf4a97fbe20c938da310fd29702f466fc53bab45254bab05f00770b51'),
       ],
     );
+  }
+
+  @override
+  Future<void> uploadFile(String linkToUpload, File file) {
+    // TODO: implement uploadFile
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResourceUploadLink> getImageUploadPath(File imageFile) {
+    // TODO: implement getImageUploadPath
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResourscesList> getResourcesList() {
+    // TODO: implement getResourcesList
+    throw UnimplementedError();
   }
 }
