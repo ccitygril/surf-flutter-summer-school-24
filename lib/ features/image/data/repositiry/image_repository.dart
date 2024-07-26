@@ -11,12 +11,14 @@ class ImageRepository {
 
   ImageRepository({required this.client});
 
+  final dio = Dio();
+
   Future<ResourceUploadLink> getImageUploadPath(File imageFile) async {
     try {
       final link = await client.getImageUploadPath();
       return mapDtoToResourceUploadLink(link);
-    } on DioException catch (error) {
-      throw Exception('Failed to get image: ${error.message}');
+    } on DioException catch (error, stackTrace) {
+      throw Exception('Failed to get image: ${error.message} ${stackTrace}');
     }
   }
 
@@ -27,5 +29,12 @@ class ImageRepository {
     } on DioException catch (error) {
       throw Exception('Failed to get image: ${error.message}');
     }
+  }
+
+  Future<void>? uploadFile(String linkToUpload, File file) async {
+    final formData = FormData.fromMap({
+      'file': await MultipartFile.fromFile(file.path),
+    });
+    dio.put(linkToUpload, data: formData);
   }
 }
