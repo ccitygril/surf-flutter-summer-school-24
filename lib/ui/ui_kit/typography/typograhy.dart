@@ -35,4 +35,10 @@ abstract class AppTypography {
     fontSize: 32,
     fontWeight: FontWeight.w600,
   );
+
+  static const TextStyle slime20 = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 20,
+    fontWeight: FontWeight.w300,
+  );
 }

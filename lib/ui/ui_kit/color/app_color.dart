@@ -34,6 +34,10 @@ abstract class LightColorPalette {
   static const platinum = Color(0xFFE7E4E0);
 
   static const blue80 = Color(0xFF80E7FF);
+
+  static const grayFB = Color(0xFFBFBFBF);
+
+  static const grayAA = Color(0xFFAAAAAA);
 }
 
 abstract class DarkColorPalette {
@@ -68,4 +72,8 @@ abstract class DarkColorPalette {
   static const gray88 = Color(0xFF888888);
 
   static const blue24 = Color(0xFF247487);
+
+  static const grayFB = Color(0xFFBFBFBF);
+
+  static const grayAA = Color(0xFFAAAAAA);
 }

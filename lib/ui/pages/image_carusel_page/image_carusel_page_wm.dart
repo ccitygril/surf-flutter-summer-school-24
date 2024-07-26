@@ -57,6 +57,7 @@ class ImageCaruselPageWidgetModel
 
   @override
   late final pageController = PageController(
+    viewportFraction: 0.8,
     initialPage: widget.initialIndex,
   );
 

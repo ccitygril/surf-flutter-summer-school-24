@@ -18,11 +18,13 @@ abstract class AppThemeData {
       surface: _lightColorScheme.surface,
       onSurface: _lightColorScheme.onSurface,
     ),
+    iconTheme: IconThemeData(color: _lightColorScheme.onSecondary),
     scaffoldBackgroundColor: _lightColorScheme.background,
     appBarTheme: AppBarTheme(
-      color: _lightColorScheme.background,
-      iconTheme: IconThemeData(
-        color: _lightColorScheme.onPrimary,
+      // color: _lightColorScheme.primary,
+      backgroundColor: _lightColorScheme.background,
+      actionsIconTheme: IconThemeData(
+        color: _lightColorScheme.onSecondary,
       ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -62,9 +64,11 @@ abstract class AppThemeData {
     ),
     scaffoldBackgroundColor: _darkColorScheme.background,
     appBarTheme: AppBarTheme(
-      color: _lightColorScheme.background,
-      iconTheme: IconThemeData(
-        color: _lightColorScheme.onPrimary,
+      // color: _darkColorScheme.primary,
+
+      backgroundColor: _darkColorScheme.background,
+      actionsIconTheme: IconThemeData(
+        color: _darkColorScheme.onSecondary,
       ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
