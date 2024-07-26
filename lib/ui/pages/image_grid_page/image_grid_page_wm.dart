@@ -2,6 +2,7 @@ import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:surf_flutter_summer_school_24/%20features/image/domain/repository/image_repository_interface.dart';
 import 'package:surf_flutter_summer_school_24/%20features/image/entity/resoursces_list.dart';
 import 'package:surf_flutter_summer_school_24/ui/pages/image_carusel_page/image_carusel_page.dart';
 
@@ -19,7 +20,7 @@ ImageGridPageWidgetModel defaultImageGridPageWidgetModelFactory(
   // final appScope = context.read<IAppScope>();
   return ImageGridPageWidgetModel(
     ImageGridPageModel(
-      imageRepository: context.read(), /*scope.repository*/
+      imageRepository: context.read<IImageRepository>(), /*scope.repository*/
     ),
   );
 }

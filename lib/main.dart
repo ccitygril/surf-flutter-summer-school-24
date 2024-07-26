@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:surf_flutter_summer_school_24/%20features/image/data/client/image_client.dart';
 import 'package:surf_flutter_summer_school_24/%20features/image/data/interseptor/auth_interseptor.dart';
 import 'package:surf_flutter_summer_school_24/%20features/image/data/repositiry/image_repository.dart';
+import 'package:surf_flutter_summer_school_24/%20features/image/domain/repository/image_repository_interface.dart';
 import 'package:surf_flutter_summer_school_24/%20features/theme%20/di/theme_inherited.dart';
 import 'package:surf_flutter_summer_school_24/%20features/theme%20/domain/theme_controller.dart';
 import 'package:surf_flutter_summer_school_24/%20features/theme%20/repository/theme_repository.dart';
@@ -58,18 +59,12 @@ class MainApp extends StatelessWidget {
             theme: AppThemeData.lightTheme,
             darkTheme: AppThemeData.darkTheme,
             themeMode: themeMode,
-            home: Provider<ImageRepository>(
+            home: Provider<IImageRepository>(
               create: (_) => ImageRepository(client: client, dio: dio),
               builder: (context, child) {
                 return const ImageGridPageWidget();
               },
             ),
-            // Provider<MockImageRepository>(
-            //   create: (_) => MockImageRepository(),
-            //   builder: (context, child) {
-            //     return const ImageGridPageWidget();
-            //   },
-            // ),
           );
         },
       ),
