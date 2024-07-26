@@ -12,18 +12,16 @@ class _ImageClient implements ImageClient {
   _ImageClient(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= 'https://5d42a6e2bc64f90014a56ca0.mockapi.io/api/v1/';
-  }
+  });
 
   final Dio _dio;
 
   String? baseUrl;
 
   @override
-  Future<ResourceUploadLinkDto> getImageUploadPath() async {
+  Future<ResourceUploadLinkDto> getImageUploadPath(String path) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'path': path};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -102,20 +100,20 @@ class _ImageClient implements ImageClient {
   }
 
   @override
-  Future<ResourscesListDto> getResourcesList() async {
+  Future<ResourceDto> getResourcesList([String path = '/']) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'path': path};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ResourscesListDto>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<ResourceDto>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/v1/disk/resources/public',
+              '/v1/disk/resources',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -124,7 +122,7 @@ class _ImageClient implements ImageClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ResourscesListDto.fromJson(_result.data!);
+    final value = ResourceDto.fromJson(_result.data!);
     return value;
   }
 

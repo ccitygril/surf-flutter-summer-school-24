@@ -1,37 +1,38 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_summer_school_24/%20features/image/entity/resoursces_list.dart';
+import 'package:surf_flutter_summer_school_24/%20features/image/entity/image_entity.dart';
 
 class PageCarousel extends StatefulWidget {
   const PageCarousel({
     super.key,
-    required this.resourscesList,
+    required this.images,
+    required this.controller,
   });
 
-  final ResourscesList resourscesList;
+  final PageController controller;
+  final List<ImageEntity> images;
+
   @override
   State<PageCarousel> createState() => _PageCarouselState();
 }
 
 class _PageCarouselState extends State<PageCarousel> {
-  final _controller = PageController();
-
   @override
   Widget build(BuildContext context) {
     return Center(
       child: LayoutBuilder(
         builder: (context, constrains) {
-          return ListView.separated(
+          return PageView.builder(
             // physics: const PageScrollPhysics(),
-            itemCount: widget.resourscesList.items.length,
-            controller: _controller,
+            itemCount: widget.images.length,
+            controller: widget.controller,
             scrollDirection: Axis.horizontal,
-            cacheExtent: 500,
             clipBehavior: Clip.hardEdge,
             itemBuilder: (context, index) {
               return SizedBox(
                 width: constrains.maxWidth * 0.9,
                 child: AnimatedBuilder(
-                  animation: _controller,
+                  animation: widget.controller,
                   builder: (context, _) {
                     final page = _getPage();
                     final t = page - index;
@@ -50,26 +51,28 @@ class _PageCarouselState extends State<PageCarousel> {
                     if (isLeaving) {
                       final tween = Tween(begin: 0, end: -60.0);
                       final offset = tween.transform(t.abs());
-                      transform.translate(offset);
+                      transform.translate(offset.toDouble());
                     }
 
                     if (isIntro) {
                       final tween = Tween(begin: 0, end: 60.0);
                       final offset = tween.transform(t.abs());
-                      transform.translate(offset);
+                      transform.translate(offset.toDouble());
                     }
 
                     return Transform(
                       transform: transform,
                       alignment: Alignment.center,
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                        decoration: BoxDecoration(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                widget.resourscesList.items[index].url),
-                            fit: BoxFit.cover,
+                          child: Hero(
+                            tag: widget.images[index].url,
+                            child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              imageUrl: widget.images[index].url,
+                            ),
                           ),
                         ),
                       ),
@@ -78,7 +81,7 @@ class _PageCarouselState extends State<PageCarousel> {
                 ),
               );
             },
-            separatorBuilder: (context, index) => const SizedBox(width: 10),
+            // separatorBuilder: (context, index) => const SizedBox(width: 10),
           );
         },
       ),
@@ -86,24 +89,18 @@ class _PageCarouselState extends State<PageCarousel> {
   }
 
   double _getPage() {
-    final initial = _controller.initialPage.toDouble();
-    if (_controller.positions.isEmpty) {
+    final initial = widget.controller.initialPage.toDouble();
+    if (widget.controller.positions.isEmpty) {
       return initial;
     }
 
-    if (!_controller.position.hasPixels) {
+    if (!widget.controller.position.hasPixels) {
       return initial;
     }
-    if (!_controller.position.hasContentDimensions) {
+    if (!widget.controller.position.hasContentDimensions) {
       return initial;
     }
 
-    return _controller.page ?? initial;
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+    return widget.controller.page ?? initial;
   }
 }

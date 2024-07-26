@@ -10,12 +10,15 @@ import 'image_upload_page_widget.dart';
 
 abstract interface class IImageUploadPageWidgetModel implements IWidgetModel {
   void goBack();
+
   Future<void> getImageFromCamera();
+
   Future<void> getImageFromGallery();
 }
 
 ImageUploadPageWidgetModel defaultImageUploadPageWidgetModelFactory(
-    BuildContext context) {
+  BuildContext context,
+) {
   return ImageUploadPageWidgetModel(
     ImageUploadPageModel(
       imageRepository: context.read(),
@@ -38,23 +41,28 @@ class ImageUploadPageWidgetModel
 
   @override
   Future<void> getImageFromCamera() async {
-    File? image;
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-    if (pickedFile != null) {
-      image = File(pickedFile.path);
-      model.uploadFile(image);
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+    );
+    if (pickedFile == null) {
+      return;
     }
+
+    final image = File(pickedFile.path);
+    model.uploadFile(pickedFile.name, image);
   }
 
   @override
   Future<void> getImageFromGallery() async {
-    File? image;
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      image = File(pickedFile.path);
-      model.uploadFile(image);
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (pickedFile == null) {
+      return;
     }
+
+    final image = File(pickedFile.path);
+    model.uploadFile(pickedFile.name, image);
   }
 }

@@ -9,6 +9,11 @@ import 'image_carusel_page_widget.dart';
 
 abstract interface class IImageCaruselPageWidgetModel implements IWidgetModel {
   EntityValueListenable<ResourscesList?> get images;
+
+  PageController get pageController;
+
+  int get activeIndex;
+
   void goBack();
 }
 
@@ -48,5 +53,23 @@ class ImageCaruselPageWidgetModel
   @override
   void goBack() {
     Navigator.pop(context);
+  }
+
+  @override
+  late final pageController = PageController(
+    initialPage: widget.initialIndex,
+  );
+
+  @override
+  int get activeIndex {
+    if (pageController.positions.isEmpty) {
+      return widget.initialIndex;
+    }
+
+    if (!pageController.position.hasPixels) {
+      return widget.initialIndex;
+    }
+
+    return pageController.page?.round() ?? widget.initialIndex;
   }
 }

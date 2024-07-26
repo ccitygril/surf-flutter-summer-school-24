@@ -22,36 +22,54 @@ class ImageGridPageWidget extends ElementaryWidget<IImageGridPageWidgetModel> {
       body: EntityStateNotifierBuilder(
         listenableEntityState: wm.images,
         builder: (context, data) {
-          return GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-            ),
-            padding: const EdgeInsets.all(8),
-            itemCount: data?.items.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 2.0, vertical: 3),
-                child: GestureDetector(
-                  onTap: wm.openCarousel,
-                  child: CachedNetworkImage(
-                    imageUrl: wm.images.value.data!.items[index].url,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => Shimmer.fromColors(
-                      baseColor: Colors.black26,
-                      highlightColor: Colors.white24,
-                      child: Container(
-                        width: 116,
-                        height: 116,
-                        color: Colors.black26,
+          return RefreshIndicator(
+            onRefresh: wm.refresh,
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+              ),
+              padding: const EdgeInsets.all(8),
+              itemCount: data?.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 2.0,
+                    vertical: 3,
+                  ),
+                  child: GestureDetector(
+                    onTap: () => wm.openCarousel(index),
+                    child: Hero(
+                      tag: data?[index].url ?? index,
+                      child: CachedNetworkImage(
+                        imageUrl: data?[index].url ?? '',
+                        fit: BoxFit.cover,
+                        errorWidget: (context, _, __) => const _ImageShimmer(),
+                        placeholder: (context, url) => const _ImageShimmer(),
                       ),
                     ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           );
         },
+      ),
+    );
+  }
+}
+
+class _ImageShimmer extends StatelessWidget {
+  const _ImageShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: Colors.black26,
+      highlightColor: Colors.white24,
+      child: Container(
+        width: 116,
+        height: 116,
+        color: Colors.black26,
       ),
     );
   }

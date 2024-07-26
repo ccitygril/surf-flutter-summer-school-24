@@ -2,17 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:surf_flutter_summer_school_24/%20features/image/data/client/urls.dart';
 import 'package:surf_flutter_summer_school_24/%20features/image/data/dto/link_dto.dart';
+import 'package:surf_flutter_summer_school_24/%20features/image/data/dto/resource_dto.dart';
 import 'package:surf_flutter_summer_school_24/%20features/image/data/dto/resource_upload_link_dto.dart';
-import 'package:surf_flutter_summer_school_24/%20features/image/data/dto/resoursces_list_dto.dart';
 
 part 'image_client.g.dart';
 
-@RestApi(baseUrl: 'https://5d42a6e2bc64f90014a56ca0.mockapi.io/api/v1/')
+@RestApi()
 abstract class ImageClient {
   factory ImageClient(Dio dio, {String baseUrl}) = _ImageClient;
 
   @GET(Urls.upload)
-  Future<ResourceUploadLinkDto> getImageUploadPath();
+  Future<ResourceUploadLinkDto> getImageUploadPath(
+    @Query('path') String path,
+  );
 
   @PUT(Urls.upload)
   Future<ResourceUploadLinkDto> putImage();
@@ -20,8 +22,10 @@ abstract class ImageClient {
   @POST(Urls.upload)
   Future<LinkDto> postImage();
 
-  @GET(Urls.resourcesList)
-  Future<ResourscesListDto> getResourcesList();
+  @GET(Urls.resources)
+  Future<ResourceDto> getResourcesList([
+    @Query('path') String path = '/',
+  ]);
 
   @GET(Urls.download)
   Future<LinkDto> getImageDownloadPath();

@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'link_dto.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class LinkDto {
   final String url;
   final String method;

@@ -3,7 +3,7 @@ import 'package:surf_flutter_summer_school_24/%20features/image/data/dto/resourc
 
 part 'resoursces_list_dto.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ResourscesListDto {
   final List<ResourceDto> items;
   final String? type;

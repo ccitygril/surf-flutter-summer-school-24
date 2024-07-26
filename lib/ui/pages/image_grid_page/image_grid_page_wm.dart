@@ -2,16 +2,18 @@ import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:surf_flutter_summer_school_24/%20features/image/domain/repository/image_repository_interface.dart';
-import 'package:surf_flutter_summer_school_24/%20features/image/entity/resoursces_list.dart';
+import 'package:surf_flutter_summer_school_24/%20features/image/entity/image_entity.dart';
 import 'package:surf_flutter_summer_school_24/ui/pages/image_carusel_page/image_carusel_page.dart';
 
 import 'image_grid_page_model.dart';
 import 'image_grid_page_widget.dart';
 
 abstract interface class IImageGridPageWidgetModel implements IWidgetModel {
-  EntityValueListenable<ResourscesList?> get images;
-  void openCarousel();
+  EntityValueListenable<List<ImageEntity>> get images;
+
+  void openCarousel(int index);
+
+  Future<void> refresh();
 }
 
 ImageGridPageWidgetModel defaultImageGridPageWidgetModelFactory(
@@ -20,7 +22,7 @@ ImageGridPageWidgetModel defaultImageGridPageWidgetModelFactory(
   // final appScope = context.read<IAppScope>();
   return ImageGridPageWidgetModel(
     ImageGridPageModel(
-      imageRepository: context.read<IImageRepository>(), /*scope.repository*/
+      imageRepository: context.read(), /*scope.repository*/
     ),
   );
 }
@@ -30,13 +32,10 @@ ImageGridPageWidgetModel defaultImageGridPageWidgetModelFactory(
 class ImageGridPageWidgetModel
     extends WidgetModel<ImageGridPageWidget, ImageGridPageModel>
     implements IImageGridPageWidgetModel {
-  final EntityStateNotifier<ResourscesList?> _images = EntityStateNotifier();
+  @override
+  final EntityStateNotifier<List<ImageEntity>> images = EntityStateNotifier();
 
   ImageGridPageWidgetModel(super.model);
-
-  @override
-  // TODO: implement image
-  EntityValueListenable<ResourscesList?> get images => _images;
 
   @override
   void initWidgetModel() {
@@ -44,24 +43,38 @@ class ImageGridPageWidgetModel
     _loadData();
   }
 
-  Future<void> _loadData() async {
-    final previousData = await model.getImage();
-    _images.content(previousData);
+  @override
+  Future<void> refresh() async {
+    await _loadData();
+  }
 
-    // try {
-    //   final res = await model.loadData();
-    //   _exampleState.content(res);
-    // } on Exception catch (e) {
-    //   _images.error(e, previousData);
-    // }
+  Future<void> _loadData() async {
+    final previousData = images.value.data;
+    try {
+      final res = await model.getImage();
+      images.content(res);
+    } on Exception catch (e) {
+      images.error(e, previousData);
+      rethrow;
+    }
   }
 
   @override
-  void openCarousel() {
+  void reassemble() {
+    super.reassemble();
+    _loadData();
+  }
+
+  @override
+  void openCarousel(int index) {
+    final images = this.images.value.data;
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const ImageCaruselPageWidget(),
+        builder: (context) => ImageCaruselPageWidget(
+          initialIndex: index,
+          images: images ?? [],
+        ),
       ),
     );
   }

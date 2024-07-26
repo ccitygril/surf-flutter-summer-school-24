@@ -36,6 +36,12 @@ abstract class AppThemeData {
         color: _lightColorScheme.onPrimary,
       ),
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor:
+            MaterialStateProperty.all(_lightColorScheme.buttonColor),
+      ),
+    ),
   );
 
   static final darkTheme = ThemeData(
@@ -66,11 +72,12 @@ abstract class AppThemeData {
       selectedItemColor: _darkColorScheme.primary,
       unselectedItemColor: _darkColorScheme.onBackground,
     ),
-    // elevatedButtonTheme: ElevatedButtonThemeData(
-    //   style: ButtonStyle(backgroundColor:
-    //       // backgroundColor: MaterialStateProperty(_darkColorScheme.buttonColor),
-    //       ),
-    // ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor:
+            MaterialStateProperty.all(_darkColorScheme.buttonColor),
+      ),
+    ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: _darkColorScheme.primary,
       contentTextStyle: TextStyle(

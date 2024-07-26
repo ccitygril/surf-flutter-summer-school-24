@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:surf_flutter_summer_school_24/ui/ui_kit/typography/typograhy.dart';
 
 class CustomButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -11,6 +12,7 @@ class CustomButton extends StatelessWidget {
       onPressed: onTap,
       child: Text(
         title.toUpperCase(),
+        style: AppTypography.normal13.copyWith(color: Colors.white),
       ),
     );
   }

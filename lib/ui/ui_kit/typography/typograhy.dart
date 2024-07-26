@@ -18,4 +18,21 @@ abstract class AppTypography {
     fontSize: 18,
     fontWeight: FontWeight.w700,
   );
+  static const TextStyle normal16 = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const TextStyle normal13 = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const TextStyle slimbold32 = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 32,
+    fontWeight: FontWeight.w600,
+  );
 }

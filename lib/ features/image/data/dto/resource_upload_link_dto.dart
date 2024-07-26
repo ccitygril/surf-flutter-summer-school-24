@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'resource_upload_link_dto.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ResourceUploadLinkDto {
   final String operationId;
   final String href;

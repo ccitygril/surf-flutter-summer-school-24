@@ -6,7 +6,11 @@ import 'package:surf_flutter_summer_school_24/%20features/image/entity/resoursce
 import 'package:surf_flutter_summer_school_24/%20features/image/entity/resoursces_upload_link.dart';
 
 ImageEntity mapDtoToImage(ResourceDto dto) {
-  return ImageEntity(id: dto.resourceId, url: dto.file, createdAt: dto.created);
+  return ImageEntity(
+    id: dto.resourceId ?? '',
+    url: dto.file ?? '',
+    createdAt: dto.created,
+  );
 }
 
 ResourceUploadLink mapDtoToResourceUploadLink(ResourceUploadLinkDto dto) {

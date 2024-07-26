@@ -5,15 +5,15 @@ import 'resoursces_list_dto.dart';
 
 part 'resource_dto.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ResourceDto {
   @JsonKey(name: "_embedded")
-  final ResourscesListDto embedded;
-  final String resourceId;
-  final String file;
-  final String type;
-  final String path;
-  final String name;
+  final ResourscesListDto? embedded;
+  final String? resourceId;
+  final String? file;
+  final String? type;
+  final String? path;
+  final String? name;
   final String created;
   final String modified;
   final List<PreviewDto>? sizes;
@@ -22,13 +22,13 @@ class ResourceDto {
       _$ResourceDtoFromJson(json);
 
   ResourceDto({
-    required this.embedded,
+    this.embedded,
     this.sizes,
-    required this.resourceId,
-    required this.file,
-    required this.type,
-    required this.path,
-    required this.name,
+    this.resourceId,
+    this.file,
+    this.type,
+    this.path,
+    this.name,
     required this.created,
     required this.modified,
   });

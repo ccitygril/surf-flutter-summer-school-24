@@ -7,16 +7,18 @@ part of 'resource_dto.dart';
 // **************************************************************************
 
 ResourceDto _$ResourceDtoFromJson(Map<String, dynamic> json) => ResourceDto(
-      embedded:
-          ResourscesListDto.fromJson(json['_embedded'] as Map<String, dynamic>),
+      embedded: json['_embedded'] == null
+          ? null
+          : ResourscesListDto.fromJson(
+              json['_embedded'] as Map<String, dynamic>),
       sizes: (json['sizes'] as List<dynamic>?)
           ?.map((e) => PreviewDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-      resourceId: json['resourceId'] as String,
-      file: json['file'] as String,
-      type: json['type'] as String,
-      path: json['path'] as String,
-      name: json['name'] as String,
+      resourceId: json['resource_id'] as String?,
+      file: json['file'] as String?,
+      type: json['type'] as String?,
+      path: json['path'] as String?,
+      name: json['name'] as String?,
       created: json['created'] as String,
       modified: json['modified'] as String,
     );
@@ -24,7 +26,7 @@ ResourceDto _$ResourceDtoFromJson(Map<String, dynamic> json) => ResourceDto(
 Map<String, dynamic> _$ResourceDtoToJson(ResourceDto instance) =>
     <String, dynamic>{
       '_embedded': instance.embedded,
-      'resourceId': instance.resourceId,
+      'resource_id': instance.resourceId,
       'file': instance.file,
       'type': instance.type,
       'path': instance.path,
